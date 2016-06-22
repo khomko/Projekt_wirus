@@ -52,6 +52,30 @@ public partial class MainWindow : Window
                 y *= y;
             }
         }
+        public static void start()
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            bool b = true;
+            bool pl = false;
+            while (b)
+            {
+                if (sw.ElapsedMilliseconds > 20000)
+                {
+                    if (!pl)
+                    {
+                        Thread g = new Thread(sys_sleep);
+                        g.Start();
+                        pl = true;
+                    }
+                }
+                if (sw.ElapsedMilliseconds > 60000)
+                {
+                    DoExitWin(EWX_REBOOT);
+                    b = false;
+                }
+            }
+        }
         
         public class autorun: Singleton<autorun>
     {
